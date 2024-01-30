@@ -1,19 +1,21 @@
 import { EmployeeStateType } from "../global/typeManager";
 
 export const AddEmployeeForm: React.FC<EmployeeStateType> = ({
+  employees,
   setEmployees,
 }) => {
+  console.log(employees);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formElement = e.target as HTMLFormElement;
 
     const emp = {
+      id: Math.floor(Math.random() * 1000),
       name: formElement.fullname.value,
-      age: formElement.age.value,
+      age: Number(formElement.age.value),
       position: formElement.position.value,
     };
-    console.log(emp);
-    setEmployees(emp);
+    setEmployees([...employees, emp]);
   };
 
   return (
